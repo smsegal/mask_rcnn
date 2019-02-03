@@ -161,7 +161,6 @@ def display_instances(
             class_id = class_ids[i]
             score = scores[i] if scores is not None else None
             label = class_names[class_id]
-            x = random.randint(x1, (x1 + x2) // 2)
             caption = "{} {:.3f}".format(label, score) if score else label
         else:
             caption = captions[i]
@@ -548,17 +547,10 @@ def draw_boxes(
             # If there are refined boxes, display captions on them
             if refined_boxes is not None:
                 y1, x1, y2, x2 = ry1, rx1, ry2, rx2
-            x = random.randint(x1, (x1 + x2) // 2)
-            ax.text(
-                x1,
-                y1,
-                caption,
-                size=11,
-                verticalalignment="top",
-                color="w",
-                backgroundcolor="none",
-                bbox={"facecolor": color, "alpha": 0.5, "pad": 2, "edgecolor": "none"},
-            )
+            ax.text(x1, y1, caption, size=11, verticalalignment='top',
+                    color='w', backgroundcolor="none",
+                    bbox={'facecolor': color, 'alpha': 0.5,
+                          'pad': 2, 'edgecolor': 'none'})
 
         # Masks
         if masks is not None:
